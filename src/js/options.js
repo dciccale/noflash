@@ -1,41 +1,48 @@
 (function () {
-  // defaults white listed
-  var defaults = ['youtube.com', 'google.com', 'facebook.com', 'vimeo.com'];
 
   // my jquery
   var $ = function (id) {
     return document.getElementById(id);
   };
 
-  // returns the list or set it if missing
-  var getWhiteList = function () {
-    var whiteList = localStorage.whiteList;
-    if (!whiteList) {
-      whiteList = localStorage.whiteList = JSON.stringify(defaults);
-    }
-    return JSON.parse(whiteList);
-  };
+  // default white listed domains
+  var defaults = ['youtube.com', 'google.com', 'facebook.com', 'vimeo.com'];
 
-  var whiteList = getWhiteList();
+  var $elements = {
+    status: $('status'),
+    whiteList: $('whiteList'),
+    saveBtn: $('save'),
+    closeBtn: $('close')
+  };
 
   var close = function () {
     window.close();
   };
 
   var save = function () {
-    var val = $('whiteList').value.split('\n');
+    var val = $elements.whiteList.value.split('\n');
+
+    // save new options
     localStorage.whiteList = JSON.stringify(val);
-    $('status').textContent = 'White List Saved!';
+
+    // show success text
+    $elements.status.classList.remove('hide');
+
+    // auto-close options popup
     window.setTimeout(close, 750);
   };
 
-  var restore = function () {
-    $('whiteList').value = whiteList.join('\n');
-  };
+  var whiteList = localStorage.whiteList;
 
-  document.addEventListener('DOMContentLoaded', function () {
-    $('save').addEventListener('click', save, false);
-    $('close').addEventListener('click', close, false);
-    restore();
-  });
+  if (!whiteList) {
+    whiteList = localStorage.whiteList = JSON.stringify(defaults);
+  }
+
+  whiteList = JSON.parse(whiteList);
+
+  $elements.saveBtn.addEventListener('click', save, false);
+  $elements.closeBtn.addEventListener('click', close, false);
+
+  // set default values into the textbox
+  $elements.whiteList.value = whiteList.join('\n');
 }());

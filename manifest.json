@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "NoFlash",
-  "description": "This extension removes flash from the current page and replace it with a clickable element to activate later",
-  "version": "1.0.0",
+  "description": "Speed up your browsing disabling heavy objects that may slow down the page load and rendering (flash, pdf, ads, etc)",
+  "version": "1.0.1",
   "browser_action": {
     "default_icon": "src/img/icon48.png",
     "default_popup": "src/options.html",
