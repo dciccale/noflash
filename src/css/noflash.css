@@ -1,20 +1,35 @@
 .noflash {
-  display: table-cell!important;
-  vertical-align: middle!important;
-  text-align: center!important;
+  display: table!important;
   cursor: pointer!important;
   z-index: -900!important;
   border: 1px solid #b4b4b4!important;
   border-radius: 4px!important;
+  background-color: #e9e9e9!important;
+}
+
+.noflash-row {
+  display: table-row!important;
+}
+
+.noflash-cell {
+  display: table-cell!important;
+  vertical-align: middle!important;
+  text-align: center!important;
   min-width: 40px!important;
   min-height: 40px!important;
-  background-color: #e9e9e9!important;
-  text-shadow: 1px 1px 0px rgb(255, 255, 255)!important;
   font-family: "Lucida Sans Unicode", "Lucida Grande", Garuda,sans-serif!important;
 }
 
 .noflash:hover {
   background-color: #f0f0f0!important;
+}
+
+.noflash p {
+  text-shadow: 1px 1px 0px rgb(255, 255, 255)!important;
+  line-height: normal!important;
+  margin: 0!important;
+  padding: 0!important;
+  width: auto!important;
 }
 
 .noflash .title {
@@ -23,13 +38,11 @@
   border-radius: 5px!important;
   font-weight: bold!important;
   padding: 0 5px!important;
-  margin: 0!important;
 }
 
 .noflash .subtitle {
   color: #777777!important;
   font-size: 12px!important;
-  margin-top: 0!important;
 }
 
 #close {

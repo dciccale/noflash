@@ -37,10 +37,16 @@
   };
 
   var overlay = {
-    template: '<div class="noflash">' +
-      '<p class="title">Flash</p>' +
-      '<p class="subtitle">Click to activate</p>' +
-      '</div>',
+    _getTemplate: function (options) {
+      var style = 'style="width: ' + options.width + 'px;height: ' + options.height + 'px"';
+
+      return '<div class="noflash" data-id="' + options.id + '" ' + style + '>' +
+        '<div class="noflash-row">' +
+        '<div class="noflash-cell">' +
+        '<p class="title">Flash</p>' +
+        '<p class="subtitle">Click to activate</p>' +
+        '</div></div></div>';
+    },
 
     idCounter: 0,
 
@@ -59,17 +65,13 @@
       var id = this._uniqueId();
       var div = document.createElement('div');
 
+      options.id = id;
+
       // insert template
-      div.innerHTML = this.template;
+      div.innerHTML = this._getTemplate(options);
 
       // get the actual overlay element
       div = div.children[0];
-
-      div.dataset.id = id;
-      div.classList.add('noflash');
-      div.innerHTML = '<p class="title">Flash</p><p class="subtitle">Click to activate</p>';
-      div.style.width = options.width + 'px';
-      div.style.height = options.height + 'px';
 
       // replace back with the original element when clicked
       div.addEventListener('click', this._restore, false);
